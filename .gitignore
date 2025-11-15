@@ -1,0 +1,19 @@
+# Node & Hardhat
+node_modules/
+.env
+cache/
+artifacts/
+coverage/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+
+# OS files
+.DS_Stores
+Thumbs.bd
