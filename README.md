@@ -262,28 +262,148 @@ Real testing environment ready for Wave 3 integration
 
 ---
 
-# 🔮 Roadmap (Judges Need This)
+#🚀 Wave 3 — Frontend MVP & Live BlockDAG Testnet Integration
 
-### Wave 3 — Prototype  
-- UI  
-- Wallet connect  
-- On-chain interaction  
+In Wave 3, RegenDAG progressed from deployed smart contracts to a fully working, user-interactive MVP connected directly to the BlockDAG Awakening Testnet.
 
-### Wave 4 — Governance + ML  
-- DAO voting  
-- Oracle + ML fraud detection  
+The focus of this wave was real on-chain interaction, system visibility, and validating that the previously deployed contracts can be accessed, read from, and interacted with through a live frontend.
 
-### Wave 5 — Polishing  
-- UI/UX  
-- Documentation  
-- Testnet deployment  
-
-### Wave 6 — Final Demo  
-- Live deployment  
-- Video demo  
-- Impact report  
 
 ---
+
+🔗 Live BlockDAG Testnet Deployment
+
+All core RegenDAG contracts were deployed and verified on the BlockDAG Awakening Testnet and successfully integrated into the frontend using ethers.js.
+
+Deployed Contract Addresses (BlockDAG Testnet):
+
+RegenToken.sol
+0x4a5929eF4AeDE5db5b877844f2B1E9442b12d3C6
+
+AliefVerification.sol
+0x5BCA47912e44D7bD0eC6Eda6E27f07DFafE08A2C
+
+AidDistribution.sol
+0x65625522ce0AF8a7100409d9c7660555b8E51796
+
+RegenDAO.sol
+0x0371099454f20106Bc41653ea1F12F2F2845b57e
+
+
+These contracts now serve as the live backend for the RegenDAG frontend MVP.
+
+
+---
+
+🖥️ Frontend MVP Implementation
+
+A functional frontend was built and connected to the deployed contracts, enabling real-time blockchain interaction.
+
+Wave 3 frontend achievements include:
+
+Wallet connection via MetaMask (BlockDAG Testnet)
+
+Automatic detection of connected address and network
+
+Live reading of on-chain contract state
+
+Transaction submission and confirmation handling
+
+UI feedback for pending, confirmed, and failed transactions
+
+
+
+---
+
+📊 Implemented User Interfaces
+
+The MVP includes three working system pages:
+
+1. Dashboard
+
+Reads live data from deployed contracts
+
+Displays contract-related system information
+
+Serves as the central control and monitoring panel
+
+
+2. Aid Distribution
+
+Interacts directly with the AidDistribution.sol contract
+
+Submits on-chain transactions via connected wallet
+
+Displays transaction hashes and confirmation status
+
+
+3. System Status
+
+Confirms wallet connection state
+
+Confirms BlockDAG Testnet connectivity
+
+Acts as a live system health check for the protocol
+
+
+All UI actions are executed directly on-chain, with no mock data.
+
+
+---
+
+🔄 Frontend ↔ Smart Contract Interaction
+
+In this wave, RegenDAG achieved full frontend-to-contract integration:
+
+The frontend acts as a thin client
+
+Smart contracts remain the single source of truth
+
+All reads and writes are executed against live BlockDAG testnet contracts
+
+Transaction states are reflected in the UI without manual refresh
+
+
+This confirms that the RegenDAG architecture is technically sound and production-oriented.
+
+
+---
+
+🧪 Wave 3 Validation Status
+
+✔ Contracts deployed on BlockDAG Testnet
+
+✔ Frontend connected using ethers.js
+
+✔ Wallet interaction verified
+
+✔ On-chain reads confirmed
+
+✔ On-chain transactions submitted successfully
+
+✔ UI reflects blockchain state
+
+
+
+---
+
+🔜 Next: Wave 4
+
+Wave 4 will focus on governance expansion and intelligence:
+
+DAO voting and role-based permissions
+
+Expanded DAO control over aid flows
+
+Advanced fraud detection logic (ML + oracle integration)
+
+Improved governance transparency and auditability
+
+
+
+---
+
+This Wave 3 milestone confirms that RegenDAG is no longer just a contract design — it is a working decentralized application running on the BlockDAG network.
 
 # 🧑‍⚖️ Judge Summary
 
