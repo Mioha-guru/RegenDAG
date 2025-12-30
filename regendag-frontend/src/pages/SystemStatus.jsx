@@ -12,8 +12,8 @@ import {
 
 import { useWallet } from "../context/WalletContext";
 
-const DAO_ADDRESS = "0x0371099454f20106Bc41653ea1F12F2F2845b57e";
-const AID_ADDRESS = "0x65625522ce0AF8a7100409d9c7660555b8E51796";
+const DAO_ADDRESS = "0x6d568bbD6999Cc5A024D176D161FdBFc4fFfB0B6";
+const AID_ADDRESS = "0x3e2421e515B4f7c078e1c705Fd8F9c30829D2B14";
 
 export default function SystemStatus() {
   const { address, chainId } = useWallet();

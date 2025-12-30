@@ -22,7 +22,9 @@ RegenDAG solves these problems by bringing **on-chain trust, transparency, and a
 # 🌍 Vision
 To build a **global decentralized infrastructure** for climate relief, humanitarian assistance, and transparent donor funding — powered by the speed and scalability of BlockDAG.
 
----
+-------
+-------
+-------
 
 # 🎯 Core Components (Wave 2 Milestone)
 
@@ -260,7 +262,9 @@ Proper blockchain execution
 
 Real testing environment ready for Wave 3 integration
 
----
+-------
+-------
+-------
 
 #🚀 Wave 3 — Frontend MVP & Live BlockDAG Testnet Integration
 
@@ -284,11 +288,13 @@ AliefVerification.sol
 0x5BCA47912e44D7bD0eC6Eda6E27f07DFafE08A2C
 
 AidDistribution.sol
-0x65625522ce0AF8a7100409d9c7660555b8E51796
+0x3e2421e515B4f7c078e1c705Fd8F9c30829D2B14
 
 RegenDAO.sol
-0x0371099454f20106Bc41653ea1F12F2F2845b57e
+0x6d568bbD6999Cc5A024D176D161FdBFc4fFfB0B6
 
+RegenRegistry.sol
+0xb85045dcaD2e837D05b37551EF88D17D188E9841
 
 These contracts now serve as the live backend for the RegenDAG frontend MVP.
 
@@ -384,26 +390,31 @@ This confirms that the RegenDAG architecture is technically sound and production
 ✔ UI reflects blockchain state
 
 
-
----
-
-🔜 Next: Wave 4
-
-Wave 4 will focus on governance expansion and intelligence:
-
-DAO voting and role-based permissions
-
-Expanded DAO control over aid flows
-
-Advanced fraud detection logic (ML + oracle integration)
-
-Improved governance transparency and auditability
-
-
-
----
-
 This Wave 3 milestone confirms that RegenDAG is no longer just a contract design — it is a working decentralized application running on the BlockDAG network.
+
+-------
+-------
+-------
+
+#🌊 Wave 4 — DAO Governance Integration
+
+Wave 4 introduces DAO-governed execution into RegenDAG.
+
+A dedicated RegenDAO contract now serves as the authority layer, controlling sensitive protocol actions and enforcing access restrictions on-chain. Administrative operations such as member registration are executed exclusively through the DAO, preventing direct or unauthorized contract interaction.
+
+Key outcomes of this wave:
+
+DAO-controlled member registration demonstrated on testnet
+
+Registry module introduced as the single source of truth for members
+
+AidDistribution and Registry ownership routed through the DAO
+
+Frontend conditionally enables governance actions based on DAO authority
+
+Contract-level guards enforce correct execution order and safety
+
+Wave 4 establishes the governance backbone of RegenDAG, preparing the system for voting mechanisms, expanded verification logic, and protocol-level upgrades for future waves.
 
 # 🧑‍⚖️ Judge Summary
 

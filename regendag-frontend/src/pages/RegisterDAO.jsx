@@ -19,21 +19,27 @@ import { useWallet } from "../context/WalletContext";
 export default function RegisterDAO() {
   const toast = useToast();
   const { address } = useWallet(); // connected wallet
+
   const [daoAddress, setDaoAddress] = useState("");
   const [householdCount, setHouseholdCount] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // transaction state
   const [txStatus, setTxStatus] = useState("idle"); // idle | pending | confirmed | error
   const [txHash, setTxHash] = useState("");
+  const [txError, setTxError] = useState("");
 
   const short = (a = "") => (a ? `${a.slice(0, 6)}...${a.slice(-4)}` : "");
 
   async function handleRegister() {
+    // basic validation
     if (!daoAddress || daoAddress.length < 10) {
       toast({
         title: "Invalid DAO address",
-        description: "Please enter a valid Ethereum wallet address.",
+        description: "Please enter a valid wallet address.",
         status: "error",
         duration: 3000,
+        isClosable: true,
       });
       return;
     }
@@ -41,59 +47,65 @@ export default function RegisterDAO() {
     if (!householdCount || isNaN(householdCount) || Number(householdCount) < 1) {
       toast({
         title: "Invalid household count",
-        description: "Enter a valid number of households.",
+        description: "Household count must be a number greater than 0.",
         status: "error",
         duration: 3000,
+        isClosable: true,
       });
       return;
     }
 
-   try {
-  setLoading(true);
-  setTxStatus("pending");
-  setTxError("");
-  setTxHash("");
+    try {
+      setLoading(true);
+      setTxStatus("pending");
+      setTxError("");
+      setTxHash("");
 
-  const dao = await getContract();
-  const tx = await dao.daoRegister(daoAddress, Number(householdCount));
+      const dao = await getContract();
+      const tx = await dao.daoRegister(daoAddress, Number(householdCount));
 
-  setTxHash(tx.hash);
+      setTxHash(tx.hash);
 
-  toast({
-    title: "Registration submitted",
-    description: "Transaction sent. Waiting for confirmation…",
-    status: "info",
-    duration: 3000,
-  });
+      toast({
+        title: "Registration submitted",
+        description: "Transaction sent. Waiting for confirmation…",
+        status: "info",
+        duration: 3000,
+        isClosable: true,
+      });
 
-  await tx.wait();
+      await tx.wait();
 
-  setTxStatus("confirmed");
+      setTxStatus("confirmed");
 
-  toast({
-    title: "DAO Registered Successfully",
-    description: 'DAO: ${short(daoAddress)}',
-    status: "success",
-    duration: 4000,
-  });
+      toast({
+        title: "DAO Registered Successfully",
+        description: `DAO: ${short(daoAddress)}`,
+        status: "success",
+        duration: 4000,
+        isClosable: true,
+      });
 
-  setDaoAddress("");
-  setHouseholdCount("");
-} catch (err) {
-  console.error("registerDAO error:", err);
+      // reset form
+      setDaoAddress("");
+      setHouseholdCount("");
+    } catch (err) {
+      console.error("registerDAO error:", err);
 
-  setTxStatus("error");
-  setTxError(err?.reason || err?.message || "Transaction failed");
+      const message = err?.reason || err?.message || "Transaction failed";
+      setTxStatus("error");
+      setTxError(message);
 
-  toast({
-    title: "Registration Failed",
-    description: err?.reason || "Transaction failed",
-    status: "error",
-    duration: 4000,
-  });
-} finally {
-  setLoading(false);
-}
+      toast({
+        title: "Registration Failed",
+        description: message,
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      });
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -112,7 +124,11 @@ export default function RegisterDAO() {
         <VStack spacing={5} align="stretch">
           <Text fontSize="md" color="#9dd">
             Connected Wallet:{" "}
-            {address ? <Badge colorScheme="cyan">{short(address)}</Badge> : "Not connected"}
+            {address ? (
+              <Badge colorScheme="cyan">{short(address)}</Badge>
+            ) : (
+              "Not connected"
+            )}
           </Text>
 
           <Divider borderColor="rgba(0,255,255,0.1)" />
@@ -156,20 +172,25 @@ export default function RegisterDAO() {
           </Button>
 
           {txStatus !== "idle" && (
-  <Box
-    mt={4}
-    p={3}
-    borderRadius="md"
-    bg="blackAlpha.400"
-    border="1px solid rgba(0,255,255,0.1)"
-  >
-    <Text fontSize="sm">
-      {txStatus === "pending" && "⏳ Transaction pending…"}
-      {txStatus === "confirmed" && "✅ Transaction confirmed"}
-      {txStatus === "error" && "❌ ${txError}"}
-    </Text>
-  </Box>
-)}
+            <Box
+              mt={4}
+              p={3}
+              borderRadius="md"
+              bg="blackAlpha.400"
+              border="1px solid rgba(0,255,255,0.1)"
+            >
+              <Text fontSize="sm">
+                {txStatus === "pending" && "⏳ Transaction pending…"}
+                {txStatus === "confirmed" && "✅ Transaction confirmed"}
+                {txStatus === "error" && `❌ ${txError}`}
+              </Text>
+              {txHash && (
+                <Text fontSize="xs" mt={2} color="#9dd">
+                  Tx: {txHash}
+                </Text>
+              )}
+            </Box>
+          )}
         </VStack>
       </Box>
     </Box>
